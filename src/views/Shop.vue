@@ -1,4 +1,14 @@
 <template>
+  <svg style="display: none">
+    <symbol id="heart" viewBox="0 0 32 32">
+      <g>
+        <path
+          d="M16,28.72a3,3,0,0,1-2.13-.88L3.57,17.54a8.72,8.72,0,0,1-2.52-6.25,8.06,8.06,0,0,1,8.14-8A8.06,8.06,0,0,1,15,5.68l1,1,.82-.82h0a8.39,8.39,0,0,1,11-.89,8.25,8.25,0,0,1,.81,12.36L18.13,27.84A3,3,0,0,1,16,28.72ZM9.15,5.28A6.12,6.12,0,0,0,4.89,7a6,6,0,0,0-1.84,4.33A6.72,6.72,0,0,0,5,16.13l10.3,10.3a1,1,0,0,0,1.42,0L27.23,15.91A6.25,6.25,0,0,0,29,11.11a6.18,6.18,0,0,0-2.43-4.55,6.37,6.37,0,0,0-8.37.71L16.71,8.8a1,1,0,0,1-1.42,0l-1.7-1.7a6.28,6.28,0,0,0-4.4-1.82Z"
+        />
+      </g>
+    </symbol>
+  </svg>
+
   <el-menu
     :default-active="activeIndex"
     class="el-menu-demo"
@@ -17,11 +27,22 @@
       </div>
       <div class="description">
         <div class="prices">
-          <div class="price1"><span>86968 ₽</span><span>99990 ₽</span></div>
-          <span class="price2">85251 ₽</span>
+          <div class="price1"><span>86 968 ₽</span><span>99 990 ₽</span></div>
+          <span class="price2">85 251 ₽</span>
         </div>
         <div class="characteristics">
           Apple iPhone 13 Pro Max, 1 ТБ, «небесно-голубой»
+        </div>
+        <div class="rate">
+          <el-rate v-model="value[idx]" />
+          <span>100</span>
+        </div>
+        <div class="sentence">Рассрочка 0-0-6</div>
+        <div class="btn-block">
+          <button class="btn">В корзину</button>
+          <svg class="like">
+            <use xlink:href="#heart"></use>
+          </svg>
         </div>
       </div>
     </div>
@@ -36,6 +57,17 @@ export default {
   data() {
     return {
       activeIndex: ref("3"),
+      value: [
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+        ref(null),
+      ],
       array: [1, 2, 3, 4, 5, 6, 7, 8],
     };
   },
@@ -65,7 +97,6 @@ export default {
   border-radius: 20px;
   border: 1px solid rgb(202, 202, 202);
   width: 230px;
-  height: 500px;
   box-shadow: 5px 5px 5px rgb(202, 202, 202);
 }
 
@@ -104,7 +135,7 @@ export default {
   width: 140px;
   height: 40px;
   border-radius: 25px;
-  background-color: rgb(184, 184, 184);
+  background-color: rgb(212, 212, 212);
   font-size: 12px;
   color: #000;
   display: flex;
@@ -160,5 +191,71 @@ export default {
   color: rgb(158, 158, 158);
   font-size: 12px;
   text-align: center;
+}
+
+.rate {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.rate span {
+  font-size: 15px;
+  color: rgb(158, 158, 158);
+}
+
+.sentence {
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #000;
+  background: linear-gradient(
+    90deg,
+    rgba(167, 255, 255, 1) 0%,
+    rgba(222, 241, 32, 1) 79%
+  );
+  width: 60%;
+  text-align: center;
+  padding: 8px;
+  border-radius: 30px;
+}
+
+.btn-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px;
+  width: 100%;
+  max-width: 140px;
+  background: rgb(180, 20, 180);
+  border-radius: 15px;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  transition: opacity 0.1s linear;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.like {
+  width: 30px;
+  height: 30px;
+  fill: rgb(180, 20, 180);
+  margin-left: 15px;
+  transition: 0.1s linear;
+}
+
+.like:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 </style>
