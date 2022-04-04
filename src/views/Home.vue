@@ -68,13 +68,14 @@ export default {
       loading: ref(true),
       userList: [],
       eventsList: [],
+      now: new Date(),
     };
   },
 
   created: async function () {
     this.$options.sockets.onmessage = (event) => {
       let e = JSON.parse(event.data);
-      e.ctime = dayjs(e.ctime).format("DD.MM.YYYY HH:mm");
+      e.ctime = dayjs(this.now - e.ctime).format("DD.MM.YYYY HH:mm");
       this.eventsList.unshift(e);
     };
 
@@ -120,7 +121,9 @@ export default {
       this.dataWithUserList.items.forEach((element) => {
         let obj = localStorage.getItem(`id:${element.id}`);
         if (!obj) {
-          element.ctime = dayjs(element.ctime).format("DD.MM.YYYY HH:mm");
+          element.ctime = dayjs(this.now - element.ctime).format(
+            "DD.MM.YYYY HH:mm"
+          );
           this.userList.push(element);
         }
       });
